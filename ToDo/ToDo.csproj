@@ -188,6 +188,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\kendo\bower_components\jquery\jquery.js" />
+    <Content Include="Content\kendo\bower_components\todomvc-common\base.css" />
+    <Content Include="Content\kendo\bower_components\todomvc-common\base.js" />
+    <Content Include="Content\kendo\bower_components\todomvc-common\bg.png" />
+    <Content Include="Content\kendo\index.html" />
+    <Content Include="Content\kendo\js\app.js" />
+    <Content Include="Content\kendo\js\lib\kendo.bindings.custom.js" />
+    <Content Include="Content\kendo\js\lib\kendo.data.localstoragedatasource.js" />
+    <Content Include="Content\kendo\js\lib\kendo.web.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -244,6 +253,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\kendo\bower.json" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />

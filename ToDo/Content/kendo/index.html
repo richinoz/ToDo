@@ -1,11 +1,9 @@
-﻿
-@{
-    Layout = null;
-}
+<!doctype html>
+<html lang="en" data-framework="kendo">
 	<head>
 		<meta charset="utf-8">
 		<title>Kendo UI • TodoMVC</title>
-		<link rel="stylesheet" href="~/Content/kendo/bower_components/todomvc-common/base.css">
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 	</head>
 	<body>
 		<section id="todoapp">
@@ -58,11 +56,11 @@
 				<input class="edit" data-bind="value: title, events: { change: endEdit, blur: endEdit }, enter: endEdit">
 			</li>
 		</script>
-		<script src="~/Content/kendo/bower_components/todomvc-common/base.js"></script>
-		<script src="~/Content/kendo/bower_components/jquery/jquery.js"></script>
-		<script src="~/Content/kendo/js/lib/kendo.web.js"></script>
-		<script src="~/Content/kendo/js/lib/kendo.bindings.custom.js"></script>
-		<script src="~/Content/kendo/js/lib/kendo.data.localstoragedatasource.js"></script>
-		<script src="~/Content/kendo/js/app.js"></script>
+		<script src="bower_components/todomvc-common/base.js"></script>
+		<script src="bower_components/jquery/jquery.js"></script>
+		<script src="js/lib/kendo.web.js"></script>
+		<script src="js/lib/kendo.bindings.custom.js"></script>
+		<script src="js/lib/kendo.data.localstoragedatasource.js"></script>
+		<script src="js/app.js"></script>
 	</body>
-
+</html>
