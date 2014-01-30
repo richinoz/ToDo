@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Core.Domain.Entities;
 using Core.Services;
 using Core.Services.Concrete;
 
@@ -14,6 +16,18 @@ namespace ToDo.Controllers {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
+        }
+
+        public JsonResult Add()
+        {
+            var toDoItem = new ToDoItem()
+            {
+                Description = "test" + DateTime.Now
+            };
+
+            _toDoService.Add(toDoItem);
+
+            return Json("Added", JsonRequestBehavior.AllowGet);
         }
     }
 }
