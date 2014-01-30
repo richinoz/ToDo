@@ -69,9 +69,9 @@
     <Compile Include="Helpers\TransactionManager.cs" />
     <Compile Include="JoinType.cs" />
     <Compile Include="Mappings\ActiveServiceClassMap.cs" />
+    <Compile Include="Mappings\dbo\ATestClass.cs" />
     <Compile Include="Mappings\SchemaClassMap.cs" />
     <Compile Include="NHibernate\Extensions\Methods\IsLikeGenerator .cs" />
-    <Compile Include="NHibernate\NHibernateBillingSessionFactoryBuilder.cs" />
     <Compile Include="NHibernate\Interfaces\CampAusSession.cs" />
     <Compile Include="NHibernate\Extensions\NhibernateExtensions.cs" />
     <Compile Include="NHibernate\NHibernateNullDateTime.cs" />

@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Data.Mappings.dbo;
 using Core.Data.NHibernate.Extensions;
 using Core.Data.NHibernate.Sessions;
 using Core.Data.NHibernate.Interfaces;
 using FluentNHibernate;
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Helpers;
+using FluentNHibernate.Conventions.Instances;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Core.Data.NHibernate
 {
@@ -43,23 +48,72 @@ namespace Core.Data.NHibernate
 
             if (enableCache)
                 config.Cache(x => x.UseQueryCache().UseSecondLevelCache().ProviderClass(typeof(global::NHibernate.Caches.SysCache.SysCacheProvider).AssemblyQualifiedName));
-            
-            config.Database(
-                MsSqlConfiguration.MsSql2008.ConnectionString(c => c.FromConnectionStringWithKey(connectionStringName)))
-                .Mappings(
-                    m =>
-                        m.FluentMappings.AddFromAssemblyOf<TransactionException>(t => t.Namespace.StartsWith(mapToNamespace))
-                            .Conventions.Add(ForeignKey.EndsWith("Id"))
-                            .Conventions.Setup(x => x.Add(AutoImport.Never()))
-                        );
 
-            config.ExposeConfiguration(c => c.LinqToHqlGeneratorsRegistry<LinqToHqlGeneratorsRegistry>());
+         
+            return config
+               .Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c.FromConnectionStringWithKey(connectionStringName)))
+               .Mappings(m =>
+                         m.AutoMappings.Add(CreateAutomappings))
+               .ExposeConfiguration(BuildSchema)
+               .BuildSessionFactory();
+        }
 
-            return config.BuildSessionFactory();
+        private static AutoPersistenceModel CreateAutomappings()
+        {
+            // This is the actual automapping - use AutoMap to start automapping,
+            // then pick one of the static methods to specify what to map (in this case
+            // all the classes in the assembly that contains Employee), and then either
+            // use the Setup and Where methods to restrict that behaviour, or (preferably)
+            // supply a configuration instance of your definition to control the automapper.
+            return
+                AutoMap.AssemblyOf<ATestClass>(new ExampleAutomappingConfiguration())
+                .Conventions
+                    .Add<CascadeConvention>()
+                .Conventions
+                    .Add(ForeignKey.EndsWith("Id"))                            
+                .Conventions.Setup(x => x.Add(AutoImport.Never()));
+        }
+        private static void BuildSchema(Configuration config)
+        {
+            // delete the existing db on each run
+            //if (File.Exists(DbFile))
+            //    File.Delete(DbFile);
+
+            // this NHibernate tool takes a configuration (with mapping info in)
+            // and exports a database schema from it
+            //new SchemaExport(config)
+            //    .Create(false, true);
+
+            //new SchemaExport(config).SetOutputFile(@"C:\Test.sql").Create(true, true);
+            new SchemaExport(config).Create(true, true);
         }
 
     }
 
+    public class CascadeConvention : IReferenceConvention, IHasManyConvention, IHasManyToManyConvention
+    {
+        public void Apply(IManyToOneInstance instance)
+        {
+            instance.Cascade.All();
+        }
+
+        public void Apply(IOneToManyCollectionInstance instance)
+        {
+            instance.Cascade.All();
+        }
+
+        public void Apply(IManyToManyCollectionInstance instance)
+        {
+            instance.Cascade.All();
+        }
+    }
+    public class ExampleAutomappingConfiguration : DefaultAutomappingConfiguration
+    {
+        public override bool ShouldMap(Type type)
+        {
+            return type.Namespace == "Core.Data.Mappings.dbo";
+        }
+    }
     public static class FluentNHibernateExtensions
     {
         public static FluentMappingsContainer AddFromAssemblyOf<T>(this FluentMappingsContainer mappings, Predicate<Type> where)

@@ -29,7 +29,7 @@ namespace Core.Data.NHibernate.Sessions
 
             public override string NameSpace {
                 get {
-                    return "Core.Data.Mappings.dbRexa";
+                    return "Core.Data.Mappings.dbo";
                 }
             }
 

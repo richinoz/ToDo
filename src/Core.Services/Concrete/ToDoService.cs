@@ -11,7 +11,12 @@ namespace Core.Services.Concrete
     }
     public class ToDoService :IToDoService
     {
-       
+        private readonly IRepository<DomainTestClass> _domainRepository;
+
+        public ToDoService(IRepository<DomainTestClass> domainRepository) {
+            _domainRepository = domainRepository;
+        }
+
         public void Test()
         {
             throw new NotImplementedException();
