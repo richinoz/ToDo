@@ -5,6 +5,7 @@ using Core.Data.Mappings.dbo;
 using Core.Data.NHibernate.Extensions;
 using Core.Data.NHibernate.Sessions;
 using Core.Data.NHibernate.Interfaces;
+using Core.Domain.Entities;
 using FluentNHibernate;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
@@ -66,7 +67,7 @@ namespace Core.Data.NHibernate
             // use the Setup and Where methods to restrict that behaviour, or (preferably)
             // supply a configuration instance of your definition to control the automapper.
             return
-                AutoMap.AssemblyOf<ATestClass>(new ExampleAutomappingConfiguration())
+                AutoMap.AssemblyOf<ToDoItem>(new ExampleAutomappingConfiguration())
                 .Conventions
                     .Add<CascadeConvention>()
                 .Conventions
@@ -111,7 +112,7 @@ namespace Core.Data.NHibernate
     {
         public override bool ShouldMap(Type type)
         {
-            return type.Namespace == "Core.Data.Mappings.dbo";
+            return type.Namespace == "Core.Domain.Entities";
         }
     }
     public static class FluentNHibernateExtensions
