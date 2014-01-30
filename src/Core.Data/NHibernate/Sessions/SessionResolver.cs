@@ -4,10 +4,10 @@ using Utils;
 namespace Core.Data.NHibernate.Sessions
  {
 
-    public abstract class CampAusSession {
+    public abstract class SessionResolver {
         private readonly IEnvironmentHelper _environmentHelper;
 
-        protected CampAusSession(IEnvironmentHelper environmentHelper) {
+        protected SessionResolver(IEnvironmentHelper environmentHelper) {
             _environmentHelper = environmentHelper;
             EnableCache = true;
         }
@@ -23,19 +23,6 @@ namespace Core.Data.NHibernate.Sessions
             }
         }
 
-        public class CampAusSessionRexa : CampAusSession {
-            public CampAusSessionRexa(IEnvironmentHelper environmentHelper) : base(environmentHelper) {
-            }
-
-            public override string NameSpace {
-                get {
-                    return "Core.Data.Mappings.dbo";
-                }
-            }
-
-            public override Database Database {
-                get { return Database.ToDoDb; }
-            }
-        }
+        
     }
  }

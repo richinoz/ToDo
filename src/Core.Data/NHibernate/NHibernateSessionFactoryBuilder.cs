@@ -22,16 +22,16 @@ namespace Core.Data.NHibernate
     {
         private readonly Dictionary<string, ISessionFactory> _sessionFactories = new Dictionary<string, ISessionFactory>();
 
-        public ISessionFactory GetSessionFactory(CampAusSession campAusSession)
+        public ISessionFactory GetSessionFactory(SessionResolver sessionResolver)
         {
             ISessionFactory sessionFactory;
 
-            if (_sessionFactories.ContainsKey(campAusSession.NameSpace))
-                sessionFactory = _sessionFactories[campAusSession.NameSpace];
+            if (_sessionFactories.ContainsKey(sessionResolver.NameSpace))
+                sessionFactory = _sessionFactories[sessionResolver.NameSpace];
             else
             {
-                sessionFactory = CreateSessionFactory(campAusSession.NameSpace, campAusSession.ConnectionStringName, campAusSession.EnableCache);
-                _sessionFactories.Add(campAusSession.NameSpace, sessionFactory);
+                sessionFactory = CreateSessionFactory(sessionResolver.NameSpace, sessionResolver.ConnectionStringName, sessionResolver.EnableCache);
+                _sessionFactories.Add(sessionResolver.NameSpace, sessionFactory);
             }
 
             return sessionFactory;
