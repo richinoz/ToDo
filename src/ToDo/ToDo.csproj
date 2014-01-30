@@ -64,6 +64,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\lib\packageDLLs\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
     </Reference>
@@ -163,6 +167,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper\Bootstrapper.cs" />
+    <Compile Include="Bootstrapper\NHibernateModule.cs" />
+    <Compile Include="Bootstrapper\NinjectModuleExtended.cs" />
+    <Compile Include="Bootstrapper\RepositoryModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ToDoController.cs" />
@@ -303,6 +310,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Data\Core.Data.csproj">
+      <Project>{28e67285-cd33-42a1-a30c-3ecc1e0ba531}</Project>
+      <Name>Core.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Domain\Core.Domain.csproj">
       <Project>{2e359039-f57e-42c0-a71e-8bd725534f8f}</Project>
       <Name>Core.Domain</Name>
@@ -310,6 +321,10 @@
     <ProjectReference Include="..\Core.Services\Core.Services.csproj">
       <Project>{069420fc-68d6-42b4-be26-37ce022bef0e}</Project>
       <Name>Core.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{DBB8A6C3-9FE1-4969-A88F-37BBDC78BF4A}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -326,9 +341,9 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>55442</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:8823/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

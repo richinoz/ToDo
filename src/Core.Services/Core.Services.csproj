@@ -39,8 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ToDoService.cs" />
+    <Compile Include="Concrete\ToDoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Data\Core.Data.csproj">
+      <Project>{28e67285-cd33-42a1-a30c-3ecc1e0ba531}</Project>
+      <Name>Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Domain\Core.Domain.csproj">
+      <Project>{2e359039-f57e-42c0-a71e-8bd725534f8f}</Project>
+      <Name>Core.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

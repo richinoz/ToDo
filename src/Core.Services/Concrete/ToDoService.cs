@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
+using Core.Data.Repositories.Interfaces;
+using Core.Domain;
 
-namespace Core.Services
+namespace Core.Services.Concrete
 {
     public interface IToDoService
     {
@@ -12,6 +11,7 @@ namespace Core.Services
     }
     public class ToDoService :IToDoService
     {
+       
         public void Test()
         {
             throw new NotImplementedException();

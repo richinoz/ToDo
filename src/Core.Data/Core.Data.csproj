@@ -11,6 +11,10 @@
     <AssemblyName>Core.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,9 +33,30 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\lib\NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\lib\NHibernate\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\lib\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Caches.SysCache">
+      <HintPath>..\..\lib\NHibernate\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +64,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Helpers\SqlBuildingHelper.cs" />
+    <Compile Include="Helpers\TransactionManager.cs" />
+    <Compile Include="JoinType.cs" />
+    <Compile Include="Mappings\ActiveServiceClassMap.cs" />
+    <Compile Include="Mappings\SchemaClassMap.cs" />
+    <Compile Include="NHibernate\Extensions\Methods\IsLikeGenerator .cs" />
+    <Compile Include="NHibernate\NHibernateBillingSessionFactoryBuilder.cs" />
+    <Compile Include="NHibernate\Interfaces\CampAusSession.cs" />
+    <Compile Include="NHibernate\Extensions\NhibernateExtensions.cs" />
+    <Compile Include="NHibernate\NHibernateNullDateTime.cs" />
+    <Compile Include="NHibernate\NHibernateNullInteger.cs" />
+    <Compile Include="NHibernate\Sessions\CampAusSessionRexa.cs" />
+    <Compile Include="NHibernate\Interfaces\INHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="NHibernate\NHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="NHibernate\SqlStatementInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DbQKStatelessRepository.cs" />
+    <Compile Include="Repositories\DbStatelessRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBillingTransaction.cs" />
+    <Compile Include="NHibernate\Extensions\Methods\CastHqlGenerator.cs" />
+    <Compile Include="Repositories\StatelessRepository.cs" />
+    <Compile Include="Repositories\DbQKRepository.cs" />
+    <Compile Include="Repositories\DbRepository.cs" />
+    <Compile Include="Repositories\DbSecureRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitOfWorkRepository.cs" />
+    <Compile Include="Repositories\NHibernateExpressionHelper.cs" />
+    <Compile Include="NHibernate\Extensions\Methods\ConcatHqlGenerator.cs" />
+    <Compile Include="Repositories\Interfaces\IReadOnlyRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="NHibernate\Extensions\LinqToHqlGeneratorsRegistry.cs" />
+    <Compile Include="Repositories\UnitOfWorkRepository.cs" />
+    <Compile Include="Repositories\UnitOfWorkSecureRepository.cs" />
+    <Compile Include="SqlFunctions\FunctionNames.cs" />
+    <Compile Include="SqlFunctions\Interfaces\ISqlFunction.cs" />
+    <Compile Include="SqlFunctions\Interfaces\ISqlFunctionScalar.cs" />
+    <Compile Include="SqlFunctions\SqlFunction.cs" />
+    <Compile Include="SqlFunctions\SqlFunctionDetails.cs" />
+    <Compile Include="SqlStoredProcedures\Interfaces\ISqlStoredProcedureScalar.cs" />
+    <Compile Include="SqlStoredProcedures\ProcedureConstants.cs" />
+    <Compile Include="SqlStoredProcedures\ProcedureNames.cs" />
+    <Compile Include="SqlStoredProcedures\SqlStoredProcedure.cs" />
+    <Compile Include="SqlStoredProcedures\Interfaces\ISqlStoredProcedure.cs" />
+    <Compile Include="SqlStoredProcedures\SqlStoredProcedureDetails.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SqlStoredProcedures\dbRexa\Secure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Domain\Core.Domain.csproj">
+      <Project>{2e359039-f57e-42c0-a71e-8bd725534f8f}</Project>
+      <Name>Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{dbb8a6c3-9fe1-4969-a88f-37bbdc78bf4a}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

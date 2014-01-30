@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Domain
-{
-    public class Class1
-    {
+namespace Core.Data.NHibernate {
+    public class NHibernateNullDateTime {
     }
 }
