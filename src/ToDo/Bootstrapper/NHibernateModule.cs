@@ -25,7 +25,7 @@ namespace ToDo.Bootstrapper
             Bind<INHibernateSessionFactoryBuilder>().To<NHibernateSessionFactoryBuilder>().InSingletonScope();
 
             Bind<ISession>().ToMethod(ctx => ctx.Kernel.Get<INHibernateSessionFactoryBuilder>()
-                .GetSessionFactory(new CampAusSession.CampAusSessionRexa(environmentHelper))
+                .GetSessionFactory(new SessionResolverToDoDb(environmentHelper))
                 .OpenSession())
                 .WhenInjectedInto(typeof(DbRepository<>))
                 .InScope(_scope)
@@ -33,7 +33,7 @@ namespace ToDo.Bootstrapper
                 .OnDeactivation(CloseTransaction);
 
             //Bind<IStatelessSession>().ToMethod(ctx => ctx.Kernel.Get<INHibernateSessionFactoryBuilder>()
-            //    .GetSessionFactory(new CampAusSessionRexa())
+            //    .GetSessionFactory(new SessionResolverToDoDb())
             //    .OpenStatelessSession())
             //    .WhenInjectedInto(typeof(DbStatelessRepository<>))
             //    .InScope(_scope);

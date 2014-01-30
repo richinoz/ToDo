@@ -72,13 +72,13 @@
     <Compile Include="Mappings\dbo\ATestClass.cs" />
     <Compile Include="Mappings\SchemaClassMap.cs" />
     <Compile Include="NHibernate\Extensions\Methods\IsLikeGenerator .cs" />
-    <Compile Include="NHibernate\Interfaces\CampAusSession.cs" />
     <Compile Include="NHibernate\Extensions\NhibernateExtensions.cs" />
     <Compile Include="NHibernate\NHibernateNullDateTime.cs" />
     <Compile Include="NHibernate\NHibernateNullInteger.cs" />
-    <Compile Include="NHibernate\Sessions\CampAusSessionRexa.cs" />
+    <Compile Include="NHibernate\Sessions\SessionResolver.cs" />
     <Compile Include="NHibernate\Interfaces\INHibernateSessionFactoryBuilder.cs" />
     <Compile Include="NHibernate\NHibernateSessionFactoryBuilder.cs" />
+    <Compile Include="NHibernate\Sessions\SessionResolverToDoDb.cs" />
     <Compile Include="NHibernate\SqlStatementInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DbQKStatelessRepository.cs" />
