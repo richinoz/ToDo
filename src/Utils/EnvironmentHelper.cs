@@ -1,11 +1,9 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Core.Domain;
 
 namespace Utils
 {
-    public interface IEnvironmentHelper {
-        string GetDatabaseConnectionString(Database database);
-    }
     public class EnvironmentHelper : IEnvironmentHelper
     {
       
@@ -24,5 +22,12 @@ namespace Utils
             return connectionString;
 
         }
+
+        public T GetConfigSetting<T>(string configKey) where T : struct {
+            
+            var ret =ConfigurationManager.AppSettings.Get(configKey);
+            return (T)Convert.ChangeType(ret, typeof (T));
+        }
+
     }
 }

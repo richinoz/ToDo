@@ -63,18 +63,26 @@ var app = app || {};
                     console.log('RESULT', result);
                 });
             },
-            update: function(options) {
-                alert('update');
+            update: function (options) {
+                console.log('Update', options.data.models);
+                var url = '/ToDo/Update';
+                $('').kendoSync(url, options, options.data.models[0], function (result) {
+                    console.log('RESULT', result);
+                });
             },
             destroy: function (options) {
                 console.log('destroy', options.data.models);
                 var url = '/ToDo/RemoveItems';
-                $('').kendoSync(url, options, options.data.models, undefined, function (result) {
+                $('').kendoSync(url, options, options.data.models[0], undefined, function (result) {
                     console.log('RESULT', result);
+                    
                 });
             },
             create: function (options) {
-                alert('create');
+                var url = '/ToDo/Create';                
+                $('').kendoSync(url, options, options.data.models[0], function (result) {
+                    console.log('RESULT', result);
+                });
             }
         },
         schema: {

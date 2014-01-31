@@ -18,18 +18,7 @@ namespace ToDo.Controllers {
             return View();
         }
 
-        public JsonResult Add()
-        {
-            var toDoItem = new ToDoItem()
-            {
-                title = "test" + DateTime.Now
-            };
-
-            _toDoService.Add(toDoItem);
-
-            return Json("Added", JsonRequestBehavior.AllowGet);
-        }
-
+    
         public JsonResult GetItems()
         {
             return Json(_toDoService.GetItems(), JsonRequestBehavior.AllowGet);
@@ -37,10 +26,21 @@ namespace ToDo.Controllers {
 
         public JsonResult RemoveItems(ToDoItem model)
         {
-            return Json("deleted", JsonRequestBehavior.AllowGet);
+            _toDoService.Delete(model.id);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-                
+        public JsonResult Create(ToDoItem model)
+        {
+            _toDoService.Create(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Update(ToDoItem model)
+        {
+            _toDoService.AddOrUpdate(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

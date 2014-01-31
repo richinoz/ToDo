@@ -16,11 +16,18 @@ using FluentNHibernate.Conventions.Instances;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using Utils;
 
 namespace Core.Data.NHibernate
 {
     public class NHibernateSessionFactoryBuilder : INHibernateSessionFactoryBuilder
     {
+        private readonly IEnvironmentHelper _environmentHelper;
+
+        public NHibernateSessionFactoryBuilder(IEnvironmentHelper environmentHelper) {
+            _environmentHelper = environmentHelper;
+        }
+
         private readonly Dictionary<string, ISessionFactory> _sessionFactories = new Dictionary<string, ISessionFactory>();
 
         public ISessionFactory GetSessionFactory(SessionResolver sessionResolver)
@@ -74,7 +81,7 @@ namespace Core.Data.NHibernate
                     .Add(ForeignKey.EndsWith("Id"))                            
                 .Conventions.Setup(x => x.Add(AutoImport.Never()));
         }
-        private static void BuildSchema(Configuration config)
+        private void BuildSchema(Configuration config)
         {
             // delete the existing db on each run
             //if (File.Exists(DbFile))
@@ -86,7 +93,10 @@ namespace Core.Data.NHibernate
             //    .Create(false, true);
 
             //new SchemaExport(config).SetOutputFile(@"C:\Test.sql").Create(true, true);
-            new SchemaExport(config).Create(true, true);
+            var export = _environmentHelper.GetConfigSetting<bool>("ExportDbSchema");
+
+            if(export)
+                new SchemaExport(config).Create(true, true);
         }
 
     }
