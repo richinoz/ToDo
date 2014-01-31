@@ -82,20 +82,11 @@ namespace Core.Data.NHibernate
                 .Conventions.Setup(x => x.Add(AutoImport.Never()));
         }
         private void BuildSchema(Configuration config)
-        {
-            // delete the existing db on each run
-            //if (File.Exists(DbFile))
-            //    File.Delete(DbFile);
-
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
-            //new SchemaExport(config)
-            //    .Create(false, true);
-
-            //new SchemaExport(config).SetOutputFile(@"C:\Test.sql").Create(true, true);
+        {                      
             var export = _environmentHelper.GetConfigSetting<bool>("ExportDbSchema");
 
             if(export)
+                //this will overwrite database tables
                 new SchemaExport(config).Create(true, true);
         }
 
