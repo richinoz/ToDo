@@ -187,6 +187,7 @@
     <Content Include="Content\kendo\bower_components\todomvc-common\bg.png" />
     <Content Include="Content\kendo\index.html" />
     <Content Include="Content\kendo\js\app.js" />
+    <Content Include="Content\kendo\js\KendoSync.js" />
     <Content Include="Content\kendo\js\lib\kendo.bindings.custom.js" />
     <Content Include="Content\kendo\js\lib\kendo.data.localstoragedatasource.js" />
     <Content Include="Content\kendo\js\lib\kendo.web.js" />

@@ -12,7 +12,7 @@ namespace Core.Services.Concrete
     public interface IToDoService
     {
         void Add(ToDoItem item);
-        IList<ToDoItem> GetItems(ToDoItem item);
+        IList<ToDoItem> GetItems();
     }
     public class ToDoService :IToDoService
     {
@@ -28,7 +28,7 @@ namespace Core.Services.Concrete
             _todoRepository.Save(item);
         }
 
-        public IList<ToDoItem> GetItems(ToDoItem item)
+        public IList<ToDoItem> GetItems()
         {
             return _todoRepository.All().ToList();
         }

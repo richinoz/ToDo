@@ -2,8 +2,12 @@
 {
     public class ToDoItem
     {
-        public virtual int Id { get; set; }
-        public virtual int Status { get; set; }
-        public virtual string Description { get; set; }
+        public virtual int id { get; set; }
+        //public virtual int Status { get; set; }
+        public virtual bool completed { get; set; }
+        public virtual bool edit { get; set; }
+        public virtual string title { get; set; }
+        //public virtual string Description { get; set; }
+      
     }
 }

@@ -1,3 +1,4 @@
+/// <reference path="KendoSync.js" />
 /*global $ kendo*/
 var app = app || {};
 
@@ -31,7 +32,8 @@ var app = app || {};
 	app.Todo = kendo.data.Model.define({
 		id: 'id',
 		fields: {
-			id: { editable: false, nullable: true },
+			//id: { editable: false, nullable: false},
+			id: { type: 'number', editable: false, nullable: false},
 			title: { type: 'string' },
 			completed: { type: 'boolean', nullable: false, defaultValue: false },
 			edit: { type: 'boolean', nullable: false, defaultValue: false }
@@ -49,11 +51,42 @@ var app = app || {};
 		}
 	});
 
+    app.todoDataSource = new kendo.data.DataSource({
+        autoSync: false,
+        batch: true,
+        transport:
+        {
+            read: function(options) {
+                var itemsUrl = '/ToDo/GetItems';
+                console.log('url', itemsUrl);
+                $('').kendoSync(itemsUrl, options, undefined, function(result) {
+                    console.log('RESULT', result);
+                });
+            },
+            update: function(options) {
+                alert('update');
+            },
+            destroy: function (options) {
+                console.log('destroy', options.data.models);
+                var url = '/ToDo/RemoveItems';
+                $('').kendoSync(url, options, options.data.models, undefined, function (result) {
+                    console.log('RESULT', result);
+                });
+            },
+            create: function (options) {
+                alert('create');
+            }
+        },
+        schema: {
+            model: app.Todo
+        }
+    });
+
 	// The core ViewModel for our todo app
 	app.todoViewModel = kendo.observable({
-		todos: app.todoData,
+	    todos: app.todoDataSource,
 		filter: null,
-
+		todoDataSource: app.todoDataSource,
 		// Handle route changes and direct to the appropriate handler in our
 		// local routes object.
 		routeChanged: function (url) {
@@ -110,6 +143,7 @@ var app = app || {};
 			this.todos.sync();
 		},
 		sync: function () {
+		    console.log('in sync');
 			this.todos.sync();
 		},
 		destroy: function (e) {

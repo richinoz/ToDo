@@ -22,12 +22,25 @@ namespace ToDo.Controllers {
         {
             var toDoItem = new ToDoItem()
             {
-                Description = "test" + DateTime.Now
+                title = "test" + DateTime.Now
             };
 
             _toDoService.Add(toDoItem);
 
             return Json("Added", JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetItems()
+        {
+            return Json(_toDoService.GetItems(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult RemoveItems(ToDoItem model)
+        {
+            return Json("deleted", JsonRequestBehavior.AllowGet);
+        }
+
+                
+
     }
 }

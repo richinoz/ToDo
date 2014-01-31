@@ -8,8 +8,10 @@ namespace Core.Data.Mappings.dbo {
         public ToDoItemMap()
         {            			
 			LazyLoad();
-			Id(x => x.Id).GeneratedBy.Assigned();
-			Map(x => x.Description);
+			Id(x => x.id).GeneratedBy.Assigned();
+			Map(x => x.completed);
+			Map(x => x.title);
+			Map(x => x.edit);
         }
     }
 }
