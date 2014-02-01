@@ -44,14 +44,14 @@ var app = app || {};
 	// Kendo UI DataSource and adds custom transports for saving data to
 	// localStorage.
 	// Implementation in js/lib/kendo.data.localstoragedatasource.ds
-	app.todoData = new kendo.data.extensions.LocalStorageDataSource({
+	app.todoDataLocalStorage = new kendo.data.extensions.LocalStorageDataSource({
 		itemBase: 'todos-kendo',
 		schema: {
 			model: app.Todo
 		}
 	});
 
-    app.todoDataSource = new kendo.data.DataSource({
+    app.todoData = new kendo.data.DataSource({
         autoSync: false,
         batch: true,
         transport:
@@ -92,7 +92,7 @@ var app = app || {};
 
 	// The core ViewModel for our todo app
 	app.todoViewModel = kendo.observable({
-	    todos: app.todoDataSource,
+	    todos: app.todoData,
 		filter: null,
 		todoDataSource: app.todoDataSource,
 		// Handle route changes and direct to the appropriate handler in our
