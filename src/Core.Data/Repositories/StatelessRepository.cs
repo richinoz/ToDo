@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using CampAustralia.Data;
 using Core.Data.Repositories;
 using Core.Data.Repositories.Interfaces;
 using Core.Data.SqlFunctions;

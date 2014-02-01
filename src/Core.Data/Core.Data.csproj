@@ -66,9 +66,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\SqlBuildingHelper.cs" />
-    <Compile Include="Helpers\TransactionManager.cs" />
     <Compile Include="JoinType.cs" />
-    <Compile Include="Mappings\ActiveServiceClassMap.cs" />
     <Compile Include="Mappings\dbo\ToDoItemMap.cs" />
     <Compile Include="Mappings\SchemaClassMap.cs" />
     <Compile Include="NHibernate\Extensions\Methods\IsLikeGenerator .cs" />
